@@ -10,7 +10,7 @@ Objectif : vérifier rapidement les fonctionnalités principales sur les deux vu
 - **Déplacements & tir** : Gauche/Droite puis Tir ; l’ennemi touché disparaît, le score augmente.
 - **Tirs ennemis** : Attendre les projectiles adverses, vérifier la perte de vie à l’impact.
 - **Pause (console)** : Taper `P`, vérifier le gel puis la reprise.
-- **Game over / restart** : Perdre toutes les vies, choisir `r` pour relancer ou `q` pour quitter.
+- **Game over** : Perdre toutes les vies, voir le menu Game Over ou utiliser `q` pour quitter.
 - **High-scores** : Finir avec un score top 5, saisir un nom, relancer le jeu et ouvrir “Meilleurs scores” pour voir la persistance (JSON).
 - **Options** : Dans chaque vue, remapper une touche (ex. Tir) et vérifier en jeu.
 
@@ -24,5 +24,6 @@ Objectif : vérifier rapidement les fonctionnalités principales sur les deux vu
 ## Dépannage rapide
 - Vue absente → `make check-deps` et installer la lib manquante (voir [INSTALL.md](INSTALL.md)).
 - Entrée clavier qui ne répond pas → vérifier les bindings dans le menu Options, inclure Entrée/Espace pour le tir en console.
+
 
 
