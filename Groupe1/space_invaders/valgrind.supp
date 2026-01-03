@@ -1,0 +1,289 @@
+# Suppressions pour les fuites connues de SDL3 et ncurses
+# Ces fuites sont "still reachable" et proviennent des bibliothèques
+
+{
+   SDL3_Init_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:SDL_Init
+}
+
+{
+   SDL3_Video_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:*/libSDL3.so*
+}
+
+{
+   SDL3_CreateWindow_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:SDL_CreateWindow
+}
+
+{
+   SDL3_CreateRenderer_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:SDL_CreateRenderer
+}
+
+{
+   SDL3_PollEvent_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:SDL_PollEvent
+}
+
+{
+   Mesa_Gallium_malloc_possibly_lost
+   Memcheck:Leak
+   match-leak-kinds: possible
+   ...
+   obj:*/libgallium-*.so*
+   fun:malloc
+}
+
+{
+   Mesa_Gallium_calloc_possibly_lost
+   Memcheck:Leak
+   match-leak-kinds: possible
+   ...
+   obj:*/libgallium-*.so*
+   fun:calloc
+}
+
+{
+   Mesa_Gallium_posix_memalign_possibly_lost
+   Memcheck:Leak
+   match-leak-kinds: possible
+   ...
+   obj:*/libgallium-*.so*
+   fun:posix_memalign
+}
+
+{
+   Mesa_GLX_malloc_possibly_lost
+   Memcheck:Leak
+   match-leak-kinds: possible
+   ...
+   obj:*/libGLX_mesa.so*
+   fun:malloc
+}
+
+{
+   Mesa_GLX_posix_memalign_possibly_lost
+   Memcheck:Leak
+   match-leak-kinds: possible
+   ...
+   obj:*/libGLX_mesa.so*
+   fun:posix_memalign
+}
+
+{
+   Mesa_DRM_malloc_possibly_lost
+   Memcheck:Leak
+   match-leak-kinds: possible
+   ...
+   obj:*/libdrm_amdgpu.so*
+   fun:malloc
+}
+
+{
+   Mesa_DRM_calloc_possibly_lost
+   Memcheck:Leak
+   match-leak-kinds: possible
+   ...
+   obj:*/libdrm_amdgpu.so*
+   fun:calloc
+}
+
+{
+   SDL3_Audio_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   ...
+   fun:SDL_OpenAudioDevice
+}
+
+{
+   SDL3_RWops_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:SDL_RWFromFile
+}
+
+{
+   ncurses_initscr_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   ...
+   fun:initscr
+}
+
+{
+   ncurses_start_color_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   ...
+   fun:start_color
+}
+
+{
+   ncurses_init_pair_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   ...
+   fun:init_pair
+}
+
+{
+   ncurses_locale_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   ...
+   fun:setlocale
+   fun:_nc_locale_lookup
+}
+
+{
+   ncurses_general_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   ...
+   obj:*/libncurses*.so*
+}
+
+{
+   dl_init_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:_dl_init
+}
+
+{
+   libc_dlopen_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:__libc_dlopen_mode
+}
+# Ultra-generic suppression for libgallium (matches ANY allocation from this library)
+{
+   Gallium_all_possibly_lost
+   Memcheck:Leak
+   match-leak-kinds: possible
+   obj:*/libgallium*.so*
+}
+
+# Ultra-generic suppression for libGLX_mesa (matches ANY allocation from this library)
+{
+   GLX_mesa_all_possibly_lost
+   Memcheck:Leak
+   match-leak-kinds: possible
+   obj:*/libGLX_mesa*.so*
+}
+
+# Ultra-generic suppression for libdrm_amdgpu (matches ANY allocation from this library)
+{
+   DRM_amdgpu_all_possibly_lost
+   Memcheck:Leak
+   match-leak-kinds: possible
+   obj:*/libdrm_amdgpu*.so*
+}
+
+# Ultra-generic suppression for libdrm (matches ANY allocation from this library)
+{
+   DRM_all_possibly_lost
+   Memcheck:Leak
+   match-leak-kinds: possible
+   obj:*/libdrm*.so*
+}
+
+# Catch-all for any GPU-related library possibly lost (broadest safety net)
+{
+   GPU_libs_possibly_lost
+   Memcheck:Leak
+   match-leak-kinds: possible
+   obj:*/lib*gallium*.so*
+}
+
+{
+   GPU_libs_mesa_possibly_lost
+   Memcheck:Leak
+   match-leak-kinds: possible
+   obj:*/libGLX*.so*
+}
+
+{
+   GPU_libs_drm_possibly_lost
+   Memcheck:Leak
+   match-leak-kinds: possible
+   obj:*/libdrm*.so*
+}
+
+# Absolute catch-all for ANY GPU/graphics library possibly lost leaks
+# This will suppress all GPU driver "possibly lost" allocations
+{
+   GPU_catch_all_gallium_malloc
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   obj:*/libgallium*.so*
+}
+
+{
+   GPU_catch_all_gallium_calloc
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:calloc
+   obj:*/libgallium*.so*
+}
+
+{
+   GPU_catch_all_gallium_posix_memalign
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:posix_memalign
+   obj:*/libgallium*.so*
+}
+
+{
+   GPU_catch_all_GLX_malloc
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   obj:*/libGLX*.so*
+}
+
+{
+   GPU_catch_all_GLX_posix_memalign
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:posix_memalign
+   obj:*/libGLX*.so*
+}
+
+{
+   GPU_catch_all_DRM_malloc
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   obj:*/libdrm*.so*
+}
+
+{
+   GPU_catch_all_DRM_calloc
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:calloc
+   obj:*/libdrm*.so*
+}
