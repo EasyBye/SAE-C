@@ -8,9 +8,6 @@ Space Invaders en C avec architecture MVC, deux vues interchangeables (console n
 - Tableau des high-scores persistant (`data/highscores.json`).
 - Build automatique qui active les vues disponibles (stubs sinon).
 
-## Installer
-Voir les instructions détaillées par plateforme dans [INSTALL.md](INSTALL.md).
-
 ## Compiler
 - `make` : build complet, détecte SDL3/ncurses via pkg-config.
 - `make check-deps` : affiche quelles vues seront compilées.
@@ -31,10 +28,13 @@ Les bindings sont modifiables dans le menu Options de chaque vue.
 Valgrind (Linux/WSL) : `make valgrind` — utilise `valgrind.supp` pour masquer les fuites reachables des libs.
                        `make valgrind-console` Uniquement pour Valgrind la version console
                        `make valgrind-sdl` Uniquement pour Valgrind la version SDL
+                       
+## Autres
 
-## Où contribuer ensuite
-- Ajouter des assets/sons en SDL3.
-- Ajouter Boss
-- Étendre les tests (voir [TEST.md](TEST.md)).
-- Explorer l’architecture détaillée dans [ARCHITECTURE.md](ARCHITECTURE.md).
+Voir également : 
+- [ARCHITECTURE.md](ARCHITECTURE.md) pour toute l'architecture du projet
+- [BUILD.md](BUILD.md) pour savoir comment build le projet
+- [INSTALL.md](INSTALL.md) pour les prérequis (compilateur, SDL3, ncurses...)
+- [TEST.md](TEST.md) pour les scénarios recommandés, les tests à effectuer, valgrind...
+
 
