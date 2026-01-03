@@ -3,7 +3,7 @@
 Objectif : vérifier rapidement les fonctionnalités principales sur les deux vues sans dupliquer les guides d’installation ou de build.
 
 ## Lancer les vues
-- Console : `make run` ou `./build/space_invaders --view=console`
+- Console : `make run-console` ou `./build/space_invaders --view=console`
 - SDL3 : `make run-sdl` ou `./build/space_invaders --view=sdl`
 
 ## Scénarios recommandés
@@ -22,5 +22,6 @@ Objectif : vérifier rapidement les fonctionnalités principales sur les deux vu
 `make valgrind` — utilise `valgrind.supp` pour ignorer les fuites « reachable » de SDL/ncurses/Mesa. Investiguer seulement les « definitely » ou « indirectly lost ».
 
 ## Dépannage rapide
-- Vue absente → `make check-deps` et installer la lib manquante (voir INSTALL.md).
+- Vue absente → `make check-deps` et installer la lib manquante (voir [INSTALL.md](INSTALL.md).
 - Entrée clavier qui ne répond pas → vérifier les bindings dans le menu Options, inclure Entrée/Espace pour le tir en console.
+
